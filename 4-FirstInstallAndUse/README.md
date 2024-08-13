@@ -34,7 +34,14 @@ In this section, we strongly recommend following the specified steps to remove t
 
 ---
 
-# 3 Power-On Detection Guide
+# 3 Gripper Camera Installation Guide
+
+<video id="my-video" class="video-js" controls="" preload="auto" width="100%" poster="" data-setup="{&quot;aspectRatio&quot;:&quot;16:9&quot;}">
+
+  <source src="../resources/4-FirstInstallAndUse/image/Mercury夹爪安装.mp4" type="video/mp4">
+</video>
+
+# 4 Power-On Detection Guide
 
 ## External Cable Connection
 
@@ -67,7 +74,7 @@ Click the power switch and ensure that the emergency stop is in the reset state 
 <img src="../resources/4-FirstInstallAndUse/image/robot4.png" width="400" height="auto" />
 <br>Screen On</center>
 
-Enter the login interface and input the power-on password **elephant**
+Enter the login interface and input the power-on password **Elephant**
 
 <!-- ## Power Status Display
 
