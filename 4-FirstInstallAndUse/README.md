@@ -34,7 +34,15 @@
 
 ---
 
-# 3 开机检测指南
+# 3 夹爪、摄像头安装指南
+
+<video id="my-video" class="video-js" controls="" preload="auto" width="100%" poster="" data-setup="{&quot;aspectRatio&quot;:&quot;16:9&quot;}">
+
+  <source src="../resources/4-FirstInstallAndUse/image/Mercury夹爪安装.mp4" type="video/mp4">
+</video>
+
+
+# 4 开机检测指南
 
 ## 外部电缆连接
 
@@ -68,7 +76,7 @@
 <img src="../resources/4-FirstInstallAndUse/image/robot4.png" width="400" height="auto" />
 <br>屏幕点亮</center>
 
-进入登录界面后输入开机密码**elephant**
+进入登录界面后输入开机密码**Elephant**
 
 <!-- ## 电源状态显示
 
