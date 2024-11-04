@@ -17,6 +17,7 @@
     * [1 API Introduction](6-SDKDevelopment/6.1-Python/6.1.2-ApplicationBasePython.md)
     * [2 Python Examples](6-SDKDevelopment/6.1-Python/6.1.3-PythonDemo.md)
     * [3 Drag Teaching](6-SDKDevelopment/6.1-Python/6.1.4-Drag_teach.md)
+    * [4 Gripper Control](6-SDKDevelopment/6.1-Python/6.1.5-gripper_en.md)
   * [5.2 ROS1](6-SDKDevelopment/6.2-ROS1/README.md)
     * [1 Environment Setup](6-SDKDevelopment/6.2-ROS1/6.2.1-EnvironmentBuilding.md)
     * [2 ROS Basics](6-SDKDevelopment/6.2-ROS1/6.2.2-ROS_Basics.md)

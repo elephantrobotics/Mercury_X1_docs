@@ -10,7 +10,7 @@ Python 3.8.10 is pre-installed on the system, and the `pymycobot` control librar
 
 You can install pymycobot by entering the command in the terminal:
 ````bash
-pip install pymycobot
+pip install pymycobot==3.5.0b19
 ````
 
 ### pymycobot Uninstallation
