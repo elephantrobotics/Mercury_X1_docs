@@ -17,6 +17,7 @@
     * [1 API简介](6-SDKDevelopment/6.1-Python/6.1.2-ApplicationBasePython.md)
     * [2 python 案例](6-SDKDevelopment/6.1-Python/6.1.3-PythonDemo.md)
     * [3 拖动示教](6-SDKDevelopment/6.1-Python/6.1.4-Drag_teach.md)
+    * [4 夹爪的使用](6-SDKDevelopment/6.1-Python/6.1.5-gripper.md)
   * [5.2 机器人操作系统 1 (ROS1) ](6-SDKDevelopment/6.2-ROS1/README.md)
     * [1 环境搭建](6-SDKDevelopment/6.2-ROS1/6.2.1-EnvironmentBuilding.md)
     * [2 ROS 基础](6-SDKDevelopment/6.2-ROS1/6.2.2-ROS_Basics.md)

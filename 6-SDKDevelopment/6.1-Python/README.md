@@ -10,7 +10,7 @@
 
 通过终端输入命令即可安装pymycobot
 ````bash
-pip install pymycobot
+pip install pymycobot==3.5.0b19
 ````
 
 ### pymycobot 卸载
