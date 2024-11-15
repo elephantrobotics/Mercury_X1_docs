@@ -25,7 +25,7 @@
     * [3 Rviz 使用](6-SDKDevelopment/6.2-ROS1/6.2.3-RvizIntroduction.md)
     * [4 基本功能案例](6-SDKDevelopment/6.2-ROS1/6.2.4-BasicFunction.md)
     * [5 gmapping建图](6-SDKDevelopment/6.2-ROS1/6.2.5-gmapping.md)
-    * [4 navigation导航](6-SDKDevelopment/6.2-ROS1/6.2.6-navigation.md)
+    * [6 navigation导航](6-SDKDevelopment/6.2-ROS1/6.2.6-navigation.md)
   * [5.3 机器人操作系统 2 (ROS2)](6-SDKDevelopment/6.3-ROS2/README.md)
     * [1 环境搭建](6-SDKDevelopment/6.3-ROS2/6.3.1-EnvironmentBuilding.md)
     * [2 ROS2 基础](6-SDKDevelopment/6.3-ROS2/6.3.2-ROS2_Basics.md)
