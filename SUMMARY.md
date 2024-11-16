@@ -19,6 +19,7 @@
     * [3 Drag Teaching](6-SDKDevelopment/6.1-Python/6.1.4-Drag_teach.md)
     * [4 Gripper Control](6-SDKDevelopment/6.1-Python/6.1.5-gripper_en.md)
     * [5 Voice Function](6-SDKDevelopment/6.1-Python/6.1.7-VoiceFunction.md)
+    * [6 Robot Exception Handling](6-SDKDevelopment/6.1-Python/6.1.6-ExceptionHandling.md)
   * [5.2 ROS1](6-SDKDevelopment/6.2-ROS1/README.md)
     * [1 Environment Setup](6-SDKDevelopment/6.2-ROS1/6.2.1-EnvironmentBuilding.md)
     * [2 ROS Basics](6-SDKDevelopment/6.2-ROS1/6.2.2-ROS_Basics.md)
