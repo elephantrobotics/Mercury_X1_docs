@@ -2,6 +2,9 @@
 
 This chapter presents classic robotic arm usage scenarios to showcase the product's applications in representative settings. This includes typical applications of the Mercury X1 wheeled humanoid robot in various fields, highlighting the product's versatility and applicability. Through these cases, users can gain an in-depth understanding of the robotic arm's flexibility and efficiency in practical applications, providing references for their use in specific scenarios.
 
+相关依赖文件可在
+https://github.com/elephantrobotics/mercury_demo 下载
+
 - [QR Code Recognition and Grasping](7.1-stag_detect.md)<br>
   The Mercury X1 wheeled humanoid robot's arm is equipped with a 2D camera and gripper to achieve QR code recognition and grasping. The QR code uses stag code, and the stag.detectMarkers function is used to obtain the stag code's camera coordinates. The coordinates are then transformed to the base coordinates using matrix transformation, and the coordinate control function is called for grasping.<br>
   <center>
