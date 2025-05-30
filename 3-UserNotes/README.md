@@ -282,56 +282,24 @@ https://www.elephantrobotics.com
 
 - 答：API 是一样的。
 
-#### 2 关于ROS
-**问：您能提供 rviz 模型的文件和编程示例吗？**
-
-- 答：它可以在我们的 github 上找到。
-“https://github.com/elephantrobotics/mercury_x1_ros”
-
-**问：为什么使用 ROS 启动 rviz 模型文件时，报错权限“/dev/ttyUSB0”？**
-
-- 答：这是因为没有给出串口权限。您应该在终端中键入 sudo chmod 777 端口名称。
-  例如：
-  ```
-  sudo chmod 777 /dev/ttyUSB0
-  ```
-
-**问：为什么在运行 ROS 的滑块控件和模型遵循命令时，错误 \_init_() takes exactly 2 arguments (3 given)？**
-
-- 答：pymercury 库未安装和启动。
-
 **问：使用 ROS 时，为什么打开 rviz 模型后 mercury_X1 角度与模型角度不一致？**
 
 - 答：很有可能mercury_X1的零位没有校准，mercury_X1的零位需要校准。
 
+**Q: 水星的urdf 文件路径**
+
+[Mercury X1](https://github.com/elephantrobotics/mercury_x1_ros/tree/main/turn_on_mercury_robot/urdf/mercury_x1)
+
+[Mercury A1 & B1](https://github.com/elephantrobotics/mercury_ros/tree/noetic/mercury_description/urdf)
+
 
 ### 软件问题
 
-#### 关于ROS1
+#### 1 关于ROS1
 
 **问:终端切换到~/catkin_ws/src，使用git安装更新mercury_x1_ros时，目标路径“mercury_x1_ros”已经存在。原因是什么?**
 
 - 答:这意味着在~/catkin_ws/src中已经有一个“mercury_x1_ros”包了。需要提前删除，然后重新执行git操作。
-
-**问: rosrun运行时，终端错误提示“could not open port /dev/ttyUSB0: Permission: '/dev/ttyUSB0'”。为什么?**
-
-- 答:串口权限不足。在终端输入“sudo chmod 777 /dev/ttyUSB0”，授予权限。
-
-**问:为什么ROS程序不能在VSCode中运行?**
-
-- 答:由于VSCode终端无法加载到ROS环境中，需要在系统终端中运行。
-
-**问: rosrun运行时，终端提示“无法注册主节点[http://localhost:11311]:主节点可能尚未运行”。我会继续努力的。”原因是什么?**
-
-- 答:运行ROS程序前，需要打开ROS节点，在终端中输入“roscore”。
-
-**问: rosrun运行时，终端错误提示“could not open port /dev/ ttyusb0: No such file or directory: '/dev/ttyUSB1'”。为什么?**
-
-- 答:串口错误。需要确认当前机械臂的实际串口。可以通过` ls /dev/tty* `查看。
-
-**问:在Ubuntu18.04中，' catkin_make '构建代码失败，终端提示' Project 'cv_bridge'指定'/usr/include/opencv'作为包含目录，没有找到。和其他错误信息**
-
-- 答:配置文件中的OpenCV路径与系统实际路径不匹配。你需要使用sudo命令修改配置文件(路径为“/opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake”)。系统的实际OpenCV路径位于“/usr/include/”路径下。
 
 **问:只需克隆mercury_x1_ros包，然后直接运行rosrun程序。出现诸如“package”mercury_x1_ros“not found”之类的错误或诸如无法找到文件之类的错误?**
 
@@ -344,7 +312,32 @@ catkin_make
 source devel/ setup.bash
 ```
 
-#### 关于机械臂控制
+#### 2 关于机械臂控制
+
+**Q：水星X1如何控制腰部和颈部关节？**
+
+- A：只能通过右臂控制，右臂串口连接后，通过右臂控制
+  mr.send_angle(1,20,10)控制右臂一关节模组旋转＋20°，速度10
+  mr.send_angle(11,-20,10)控制下巴舵机旋转-20°，速度10
+  mr.send_angle(12,20,10)控制颈部舵机旋转＋20°，速度10
+  mr.send_angle(13,20,10)控制腰部关节模组旋转＋20°，速度10
+
+**Q：水星右臂无法使能， mr.power on()返回值为2，怎么办？**
+
+![](../resources/3-UserNotes/image/software_9.png)
+
+A: 水星无法使能
+
+1. 首先机械臂正常上电的话返回值为1，表示开机正常。
+有可能是超过限位了，请拍一下机械臂此时的姿态，我们看一下是不是这个问题。
+2. edu机器右臂使用注意：
+拍完急停后 等8s再power_on使用（听到蜂鸣声）
+左臂poweroff poweron后等8s右臂再上电，上电前可以先读下is_power_on()
+
+**Q:外骨骼联动、VR联动、速度融合接口的相关内容**
+
+- A: https://github.com/elephantrobotics/RobotFollow.git
+
 
 **问:给机械臂发送角度或坐标机械臂没有运动**
 
@@ -383,18 +376,167 @@ rostopic echo /PowerVoltage
 ```
 查看电池电量，若电量低于21V，底座无法使用，请充电后继续使用
 
+#### 3 关节运动MOVJ
+
+**机械臂的关节运动是指关节电机带动连杆转动**
+
+![](../resources/3-UserNotes/image/software_1.gif)
+
+**关节运动存在转动方向，各关节方向可以通过下图及右手定则判断**
+
+![](../resources/3-UserNotes/image/software_2.png)
+
+右手定则：
+
+![](../resources/3-UserNotes/image/software_3.png)
+
+**右手大拇指指向旋转轴方向，图示的旋转方向为关节旋转的正向。**
+
+##### 关节零位
+
+关节存在零位，下图全关节零位[0, 0, 0, 0, 90, 0]
+
+![](../resources/3-UserNotes/image/software_2.png)
+
+零位是人为规定的，5关节处于零位时存在90°的offset，这将避免末端夹具在回零过程中和本体发生碰撞。
+- **验证关节零点**
+  在Terminal中输入下述指令，使机器人上电
+
+  ```python
+  python
+  from pymycobot import Mercury
+  mr = Mercury("/dev/right_arm")  #connect to Mercury right arm
+  ml = Mercury("/dev/left_Arm")  #connect to Mercury left arm
+  ml.power_on()	
+  mr.power_on()	
+  # 使用放松指令释放关节电机（注意！放松后需要扶住关节防止机械臂下坠损坏！）
+  ml.release_all_servos()
+  mr.release_all_servos()
+  ```
+
+  ![](../resources/3-UserNotes/image/software_4.png)
+
+  手动拖动机器人回到零位
+
+  ![](../resources/3-UserNotes/image/software_5.png)
+
+  可以通过以下细节确定零点的位置
+
+  ![](../resources/3-UserNotes/image/software_6.png)
+
+  发送指令锁闭电机
+
+  ```python
+  ml.focus_all_servos()
+  mr.focus_all_servos()
+  ```
+
+  ![](../resources/3-UserNotes/image/software_4.png)
+
+- **检查零位是否正确**
+  
+  输入获取关节角度指令查询当前位置
+  ```python
+  ml.get_angles()
+  mr.get_angles()
+  ```
+  如果返回的关节角度逼近[0, 0, 0, 0, 90, 0]，则视为零点正确
+
+- **零点校准**
+  如果在零位读取到的关节角度与[0, 0, 0, 0, 90, 0]相差很大，则需要校准关节零位
+
+  ```python
+  for i in range(1,7):
+    ml.set_servo_calibration(i)
+    mr.set_servo_calibration(i)
+  ```
+
+  校准完毕后读取关节信息，返回为[0, 0, 0, 0, 90, 0]则表示校准成功
+  ```python
+  ml.get_angles()
+  mr.get_angles()
+  ```
+
+#### 4 坐标运动MOVL
+
+##### Base坐标系定义
+
+双臂机械臂的Base坐标系原点在机器人腰部的位置，坐标轴方向{Xb, Yb, Zb}如图所示
+
+![](../resources/3-UserNotes/image/software_2.png)
+
+机械臂的坐标是指机械臂末端法兰中心点，在Base坐标系中的位置(x,y,z)和姿态(rx,ry,rz)（位姿(x,y,z,rx,ry,rz)）。
+机械臂的坐标控制是指控制机械臂末端，在Base坐标系中进行位置移动，或是姿态旋转。
+
+##### 坐标运动的初始姿态
+
+坐标运动MOVL会保证机械臂末端以直线轨迹运动，所以一个良好的初始姿态可以有效避免机械臂陷入奇异点或是关节限位
+
+- **不推荐的初始位置**: send_angles([0,0,0,0,90,0],10), 3关节的最大值为5°，初始位置的3关节为0°临近界限值。
+- **推荐的初始位置**: send_angles([0,0,-90,0,90,0],10)，该姿态下可以实现绝大部分的坐标运动
+
+##### 坐标运动范围
+
+![](../resources/3-UserNotes/image/software_7.png)
+
+![](../resources/3-UserNotes/image/software_8.png)
+
+##### 如何有效控制坐标移动
+
+**方法一：**
+- 1 使用关节指令运动到合适的初始位置: `send_angles([0,0,-90,0,90,0],10)）`
+- 2 读取当前坐标并赋值: `Current_coords = ml.get_base_coords()`
+- 3 对Current_coords进行修改，例如：控制x增加50mm `Current_coords[0] += 50`
+- 4 发送修改后的坐标: `ml.send_base_coords(Current_coords, 10)`
+
+**机械臂会沿Base坐标系的X轴前进50mm**
+
+**方法二：**
+- 1 使用关节指令运动到合适的初始位置: `ml.send_angles([0,0,-90,0,90,0],10)）`
+- 2 使用单轴移动接口: `ml.send_base_coord(2, -50, 10)`
+
+**机械臂会沿Base坐标系的Y轴前进-50mm**
+
+**方法三：**
+- 1 使用关节指令运动到合适的初始位置: `ml.send_angles([0,0,-90,0,90,0],10)`
+- 2 使用release指令放松全关节: `ml.release_all_servos()`
+- 3 手动拖动机械臂末端至目标位置
+- 4 锁紧关节，记录当前Base坐标
+  ```python
+  ml.focus_all_servos()
+  target_coords = ml.get_base_coords()
+  ```
+- 5 回到初始位置，发送目标位置
+  ```python
+  ml.send_angles([0,0,-90,0,90,0],10)
+  ml.send_base_coords(target_coords, 10)
+  ```
+
+**机械臂会从初始位置，运动到目标坐标**
+
+##### 异常指令处理
+
+如果遇到指令不响应、关节不运动或是点位执行不到位的情况，可以使用以下接口排查原因：
+```python
+ml.get_error_information()
+ml.get_robot_status()
+```
+得到返回信息后联系我方工程师即可
+
 
 ### 硬件问题
+
+**Q：水星如何装箱？以什么姿态？**
+
+- A: 有七轴版本打包姿态的脚本，运行B1-test many.py,运行后12回零 15 打包姿态。
+
+![](../resources/3-UserNotes/image/hardware_1.png)
 
 #### 1 关于结构
 
 **问:Atom在机械臂中的作用是什么?**
 
 - 答: Atom主要控制机械臂的运动学算法，包括正逆运动学、解选择、加减速、速度同步、多功率插补、坐标转换等。与atom相关的程序还不是开源的。
-
-**问:使用过程中电机自动切断电源。为什么?**
-
-- 答:电机长时间使用有过热保护。这种现象属于正常现象，几分钟后可以继续使用。
 
 #### 2 关于参数
 
