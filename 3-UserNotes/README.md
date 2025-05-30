@@ -299,21 +299,11 @@ If you have read all the content of this chapter, you can continue to the next c
 - A: They can be found on our GitHub.
 “https://github.com/elephantrobotics/mercury_x1_ros”
 
-**Q: Why do I get a permission error “/dev/ttyUSB0” when starting the rviz model file using ROS?**
+**Q: Mercury's urdf file path**
 
-- A: This is because the serial port permission is not given. You should type sudo chmod 777 port name in the terminal.
-  For example:
-  ```
-  sudo chmod 777 /dev/ttyUSB0
-  ```
+[Mercury X1](https://github.com/elephantrobotics/mercury_x1_ros/tree/main/turn_on_mercury_robot/urdf/mercury_x1)
 
-**Q: Why do I get the error \_init_() takes exactly 2 arguments (3 given) when running the ROS slider control and model follow commands?**
-
-- A: The pymercury library is not installed and started.
-
-**Q: Why is the angle of mercury_X1 inconsistent with the model angle after opening the rviz model when using ROS?**
-
-- A: It is very likely that the zero position of mercury_X1 is not calibrated, and the zero position of mercury_X1 needs to be calibrated.
+[Mercury A1 & B1](https://github.com/elephantrobotics/mercury_ros/tree/noetic/mercury_description/urdf)
 
 ### Software Issues
 
@@ -322,26 +312,6 @@ If you have read all the content of this chapter, you can continue to the next c
 **Q: When switching to ~/catkin_ws/src in the terminal and using git to install or update mercury_x1_ros, the target path “mercury_x1_ros” already exists. What is the reason?**
 
 - A: This means that there is already a “mercury_x1_ros” package in ~/catkin_ws/src. You need to delete it in advance and then re-execute the git operation.
-
-**Q: When running rosrun, the terminal error prompts “could not open port /dev/ttyUSB0: Permission: '/dev/ttyUSB0'”. Why?**
-
-- A: Insufficient serial port permissions. Enter “sudo chmod 777 /dev/ttyUSB0” in the terminal to grant permissions.
-
-**Q: Why can't ROS programs run in VSCode?**
-
-- A: Because the VSCode terminal cannot load the ROS environment, you need to run it in the system terminal.
-
-**Q: When running rosrun, the terminal prompts “Unable to register with master node [http://localhost:11311]: master may not be running yet. Will keep trying.” What is the reason?**
-
-- A: Before running the ROS program, you need to open the ROS node by entering “roscore” in the terminal.
-
-**Q: When running rosrun, the terminal error prompts “could not open port /dev/ttyUSB0: No such file or directory: '/dev/ttyUSB1'”. Why?**
-
-- A: Serial port error. You need to confirm the actual serial port of the current robotic arm. You can check it with `ls /dev/tty*`.
-
-**Q: In Ubuntu 18.04, 'catkin_make' fails to build the code, and the terminal prompts 'Project 'cv_bridge' specifies '/usr/include/opencv' as an include directory, but it does not exist.' and other error messages.**
-
-- A: The OpenCV path in the configuration file does not match the actual system path. You need to use the sudo command to modify the configuration file (path is “/opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake”). The actual OpenCV path of the system is under “/usr/include/”.
 
 **Q: Simply cloning the mercury_x1_ros package and then directly running the rosrun program results in errors such as “package 'mercury_x1_ros' not found” or errors like files not found?**
 
@@ -355,6 +325,30 @@ source devel/setup.bash
 ```
 
 #### About Robotic Arm Control
+
+**Q: How does Mercury X1 control the waist and neck joints?**
+
+- A: It can only be controlled by the right arm. After the right arm serial port is connected, control it through the right arm
+mr.send_angle(1,20,10) controls the right arm joint module to rotate +20°, speed 10
+mr.send_angle(11,-20,10) controls the chin servo to rotate -20°, speed 10
+mr.send_angle(12,20,10) controls the neck servo to rotate +20°, speed 10
+mr.send_angle(13,20,10) controls the waist joint module to rotate +20°, speed 10
+
+**Q: Mercury's right arm cannot be enabled, mr.power on() returns a value of 2, what should I do?**
+
+![](../resources/3-UserNotes/image/software_9.png)
+
+A: Mercury cannot be enabled
+
+1. First, if the robot arm is powered on normally, the return value is 1, indicating that the boot is normal.
+It may be beyond the limit. Please take a picture of the robot arm's posture at this time and let's see if it is the problem.
+2. Notes on the use of the right arm of the edu machine:
+After taking the emergency stop, wait 8s before powering on (hear the buzzer)
+After powering off the left arm, wait 8s before powering on the right arm. You can read is_power_on() before powering on
+
+**Q: Exoskeleton linkage, VR linkage, speed fusion interface related content**
+
+- A: https://github.com/elephantrobotics/RobotFollow.git
 
 **Q: The robotic arm does not move when sending angles or coordinates to it.**
 
@@ -392,17 +386,166 @@ rostopic echo /PowerVoltage
 ```
 Check the battery level. If the battery level is below 21V, the base cannot be used. Please charge it before continuing to use it.
 
+#### 3 Joint Movement MOVJ
+
+**The joint movement of the robot arm refers to the joint motor driving the connecting rod to rotate**
+
+![](../resources/3-UserNotes/image/software_1.gif)
+
+**The joint movement has a rotation direction, and the direction of each joint can be determined by the following figure and the right-hand rule**
+
+![](../resources/3-UserNotes/image/software_2.png)
+
+Right-hand rule:
+
+![](../resources/3-UserNotes/image/software_3.png)
+
+**The thumb of the right hand points to the direction of the rotation axis, and the rotation direction shown in the figure is the positive direction of the joint rotation.**
+
+##### Joint zero position
+
+Joints have zero positions. The zero positions of all joints in the figure below are [0, 0, 0, 0, 90, 0]
+
+![](../resources/3-UserNotes/image/software_2.png)
+
+Zero positions are artificially defined. When the 5 joints are at zero position, there is a 90° offset, which will prevent the end fixture from colliding with the body during the return to zero process.
+- **Verify the joint zero point**
+Enter the following command in Terminal to power on the robot
+
+```python
+python
+from pymycobot import Mercury
+mr = Mercury("/dev/right_arm") #connect to Mercury right arm
+ml = Mercury("/dev/left_Arm") #connect to Mercury left arm
+ml.power_on()
+mr.power_on()
+# Use the relaxation command to release the joint motor (Note! After relaxation, you need to hold the joint to prevent the robot arm from falling and being damaged!)
+ml.release_all_servos()
+mr.release_all_servos()
+```
+
+![](../resources/3-UserNotes/image/software_4.png)
+
+Manually drag the robot back to the zero position
+
+![](../resources/3-UserNotes/image/software_5.png)
+
+The position of the zero point can be determined by the following details
+
+![](../resources/3-UserNotes/image/software_6.png)
+
+Send command to lock motor
+
+```python
+ml.focus_all_servos()
+mr.focus_all_servos()
+```
+
+![](../resources/3-UserNotes/image/software_4.png)
+
+- **Check if the zero position is correct**
+
+Enter the command to get the joint angle to query the current position
+```python
+ml.get_angles()
+mr.get_angles()
+```
+If the returned joint angle is close to [0, 0, 0, 0, 90, 0], the zero point is considered correct
+
+- **Zero point calibration**
+If the joint angle read at the zero position is very different from [0, 0, 0, 0, 90, 0], the joint zero position needs to be calibrated
+
+```python
+for i in range(1,7):
+ml.set_servo_calibration(i)
+mr.set_servo_calibration(i)
+```
+
+After calibration, read the joint information. If the return value is [0, 0, 0, 0, 90, 0], it means the calibration is successful
+```python
+ml.get_angles()
+mr.get_angles()
+```
+
+#### 4 Coordinate motion MOVL
+
+##### Base coordinate system definition
+
+The origin of the Base coordinate system of the dual-arm robot is at the waist of the robot, and the coordinate axis directions {Xb, Yb, Zb} are as shown in the figure
+
+![](../resources/3-UserNotes/image/software_2.png)
+
+The coordinates of the robot refer to the position (x, y, z) and posture (rx, ry, rz) of the center point of the flange at the end of the robot in the Base coordinate system (position (x, y, z, rx, ry, rz)).
+The coordinate control of the robot refers to controlling the end of the robot to move the position or rotate the posture in the Base coordinate system.
+
+##### Initial posture of coordinate movement
+
+Coordinate movement MOVL will ensure that the end of the robot moves in a straight line trajectory, so a good initial posture can effectively prevent the robot from falling into a singularity or joint limit
+
+- **Not recommended initial position**: send_angles([0,0,0,0,90,0],10), the maximum value of the 3 joints is 5°, and the 3 joints in the initial position are 0° close to the limit value.
+- **Recommended initial position**: send_angles([0,0,-90,0,90,0],10), most coordinate movements can be achieved under this posture
+
+##### Coordinate movement range
+
+![](../resources/3-UserNotes/image/software_7.png)
+
+![](../resources/3-UserNotes/image/software_8.png)
+
+##### How to effectively control coordinate movement
+
+**Method 1:**
+- 1 Use joint instructions to move to the appropriate initial position: `send_angles([0,0,-90,0,90,0],10)）`
+- 2 Read the current coordinates and assign values: `Current_coords = ml.get_base_coords()`
+- 3 Modify Current_coords, for example: control x to increase by 50mm `Current_coords[0] += 50`
+- 4 Send the modified coordinates: `ml.send_base_coords(Current_coords, 10)`
+
+**The robot will move 50mm along the X axis of the Base coordinate system**
+
+**Method 2:**
+- 1 Use joint instructions to move to the appropriate initial position: `ml.send_angles([0,0,-90,0,90,0],10)）`
+- 2 Use the single-axis movement interface: `ml.send_base_coord(2, -50, 10)`
+
+**The robot will move -50mm along the Y axis of the Base coordinate system**
+
+**Method 3:**
+- 1 Use joint instructions to move to the appropriate initial position: `ml.send_angles([0,0,-90,0,90,0],10)`
+- 2 Use the release instruction to relax all joints: `ml.release_all_servos()`
+- 3 Manually drag the end of the robot arm to the target position
+- 4 Lock the joint and record the current Base coordinates
+  ```python
+  ml.focus_all_servos()
+  target_coords = ml.get_base_coords()
+  ```
+- 5 Return to the initial position and send the target position
+  ```python
+  ml.send_angles([0,0,-90,0,90,0],10)
+  ml.send_base_coords(target_coords, 10)
+  ```
+
+**The robot arm will move from the initial position to the target coordinates**
+
+##### Abnormal command processing
+
+If you encounter a situation where the command does not respond, the joint does not move, or the point is not executed in place, you can use the following interface to troubleshoot the cause:
+```python
+ml.get_error_information()
+ml.get_robot_status()
+```
+After getting the return information, just contact our engineer
+
 ### Hardware Issues
+
+**Q: How to pack Mercury? In what posture?**
+
+- A: There is a script for packing posture of the seven-axis version. Run B1-test many.py. After running, return to zero 12 times and pack posture 15 times.
+
+![](../resources/3-UserNotes/image/hardware_1.png)
 
 #### 1 About Structure
 
 **Q: What is the role of Atom in the robotic arm?**
 
 - A: Atom mainly controls the kinematic algorithms of the robotic arm, including forward and inverse kinematics, solution selection, acceleration and deceleration, speed synchronization, multi-power interpolation, coordinate transformation, etc. Programs related to Atom are not yet open source.
-
-**Q: Why does the motor automatically cut off the power during use?**
-
-- A: The motor has overheat protection for long-term use. This phenomenon is normal and can be used again after a few minutes.
 
 #### 2 About Parameters
 
