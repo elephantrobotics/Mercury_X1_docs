@@ -98,7 +98,9 @@
 [0.0, 0.0, 0.0, 0.0, 0.0, 90.0, 0.0]时零点校准成功<br>
 5. 对左右臂进行控制看是否能运动，若成功运动则机械臂正常
 <center>
-<img src="../resources/4-FirstInstallAndUse/image/robot5.png" width="400" height="auto" />
+<img src="../resources/4-FirstInstallAndUse/image/robot5_1.png" width="600" height="auto" />
+<br>
+<img src="../resources/4-FirstInstallAndUse/image/robot5.png" width="600" height="auto" />
 <br>上电后获取关节角度</center>
 
 ### 检测移动底座是否可以正常运动：
