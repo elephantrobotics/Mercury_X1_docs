@@ -94,7 +94,8 @@ Please refer to the [5.1-4 Robot Information](/5-BasicApplication/5.1-SystemUsag
 4. Calibrate the zero point, and use get_angle() again to get the joint angles. When the return is [0.0, 0.0, 0.0, 0.0, 0.0, 90.0, 0.0], the zero point calibration is successful.
 5. Control the left and right arms to see if they can move. If they move successfully, the robotic arm is normal.
 <center>
-<img src="../resources/4-FirstInstallAndUse/image/robot5.png" width="400" height="auto" />
+<img src="../resources/4-FirstInstallAndUse/image/robot5_1.png" width="600" height="auto" /><br>
+<img src="../resources/4-FirstInstallAndUse/image/robot5.png" width="600" height="auto" />
 <br>Get Joint Angles After Power-On</center>
 
 ### Check if the Mobile Base Can Move Normally:
