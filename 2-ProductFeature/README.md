@@ -18,7 +18,7 @@
 | Maximum Climbing Angle | 15° |
 | Storage Space | 15L |
 | Main Controller GPU | 6-Core Arm v8.2 64-bit CPU，384-Core Volta™ GPU |
-| Computing Power | 21 TOPS |
+| Computing Power | 40 TOPS |
 | Main Controller CPU | 4-Core ARM Cortex-A57 CPU |
 | Mobile Base Controller | 128 NVIDIA CUDA® cores |
 | Screen | 9-inch Touching Screen |
@@ -62,11 +62,11 @@
 
 | Indicator | Parameter |
 | :---------------: | :----------------: |
-| Main Control | Jetson Xavier |
-| Main Control Model | Jetson Xavier NX |
+| Main Control | Jetson Orin Nano 8GB |
+| Main Control Model | Jetson Orin Nano 8GB |
 | CPU | 6-core NVIDIA Carmel ARM®v8.2 64-bit CPU <br> 6MB L2 + 4MB L3 |
 | GPU | 384-core NVIDIA Volta™ GPU with 48 Tensor cores |
-| AI Performance | 21 TOPS |
+| AI Performance | 40 TOPS |
 | Storage | 16 GB eMMC 5.1 |
 | CSI Camera | 2 CSI cameras |
 | Network | 10/100/1000 BASE-T Ethernet |

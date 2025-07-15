@@ -2,7 +2,7 @@
 
 ## Product Introduction
 
-The Mercury X1 is a wheeled dual-arm humanoid robot designed for embodied intelligence applications. It features 19 degrees of freedom and is composed of the Mercury B1 dual-arm robot and a high-performance mobile base. The entire machine is equipped with the newly developed Liyuan series harmonic modules. The new modular design includes electromagnetic brake modules and hollow wiring. It has characteristics such as high precision, high inertia, and low weight. It is also equipped with the NVIDIA Jetson Xavier main control, working in coordination with four independent sub-controls. The mobile base is equipped with high-performance LiDAR, ultrasonic sensors, and 2D vision for rich perception; it uses direct drive motors with a maximum running speed of 1.2m/s; a maximum climbing height of 2CM; and a maximum climbing angle of 15 degrees. The entire machine has a maximum battery life of up to 8 hours, meeting the needs of personal and commercial applications.
+The Mercury X1 is a wheeled dual-arm humanoid robot designed for embodied intelligence applications. It features 19 degrees of freedom and is composed of the Mercury B1 dual-arm robot and a high-performance mobile base. The entire machine is equipped with the newly developed Liyuan series harmonic modules. The new modular design includes electromagnetic brake modules and hollow wiring. It has characteristics such as high precision, high inertia, and low weight. It is also equipped with the NVIDIA Jetson Orin Nano 8GB main control, working in coordination with four independent sub-controls. The mobile base is equipped with high-performance LiDAR, ultrasonic sensors, and 2D vision for rich perception; it uses direct drive motors with a maximum running speed of 1.2m/s; a maximum climbing height of 2CM; and a maximum climbing angle of 15 degrees. The entire machine has a maximum battery life of up to 8 hours, meeting the needs of personal and commercial applications.
 
 | Feature | Description |
 | --- | --- |
@@ -25,7 +25,7 @@ The design philosophy of the Mercury X1 wheeled humanoid robot stems from a deep
 | --- | --- |
 | Harmonic Module | Provides high precision, high inertia, low weight |
 | Hollow Wiring | Facilitates maintenance and upgrades |
-| NVIDIA Jetson Xavier | Main control working in coordination with sub-controls |
+| NVIDIA Jetson Orin Nano 8GB | Main control working in coordination with sub-controls |
 | LiDAR, Ultrasonic Sensors, 2D Vision | Rich perception capabilities |
 | Direct Drive Motor | High-performance drive, maximum speed 1.2m/s |
 
