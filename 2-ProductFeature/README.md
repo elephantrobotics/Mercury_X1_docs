@@ -16,8 +16,8 @@
 |底盘驱动电机 |高性能直驱电机 |
 |最大运行速度 |1.2m/s |
 |最大爬坡角度 |15° |
-|主控 |Nvidia Jetson Xavier NX |
-|主控算力 |21 TOPS |
+|主控 |Nvidia Jetson Orin Nano 8GB |
+|主控算力 |40 TOPS |
 |屏幕 |9英寸触摸屏 |
 |移动地盘传感器 |激光雷达，超声波雷达，2D视觉 |
 |3D 相机 |奥比中光 Deeyea |
@@ -61,11 +61,11 @@
 
 | 指标            | 参数         |
 | :---------------: | :----------------: |
-| 主控     | Jetson Xavier       |
-| 主控型号 | Jetson Xavier NX           |
+| 主控     | Jetson Orin Nano 8GB       |
+| 主控型号 | Jetson Orin Nano 8GB           |
 | CPU             | 6 核 NVIDIA Carmel ARM®v8.2 64 位 CPU <br> 6MB L2 + 4MB L3 |
 | GPU           | 搭载48个Tensor核心的384核NVIDIA Volta™ GPU |
-| AI 性能       | 21 TOPS        |
+| AI 性能       | 40 TOPS        |
 | 存储        | 16 GB eMMC 5.1         |
 | CSI 摄像头      | 2个CSI摄像头 |
 | 网络     | 10/100/1000 BASE-T以太网|
