@@ -66,7 +66,7 @@
 | Main Control Model | Jetson Orin Nano SUPER 8GB |
 | CPU | 6-core NVIDIA Carmel ARM®v8.2 64-bit CPU <br> 6MB L2 + 4MB L3 |
 | GPU | 384-core NVIDIA Volta™ GPU with 48 Tensor cores |
-| AI Performance | 40 TOPS |
+| AI Performance | 67 TOPS |
 | Storage | 16 GB eMMC 5.1 |
 | CSI Camera | 2 CSI cameras |
 | Network | 10/100/1000 BASE-T Ethernet |
