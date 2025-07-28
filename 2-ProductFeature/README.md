@@ -23,7 +23,7 @@
 | Mobile Base Controller | 128 NVIDIA CUDA® cores |
 | Screen | 9-inch Touching Screen |
 | Mobile Sensors | LIDAR, Ultrasonic Radar, 2D Vision |
-| 3D Camera | Orbbec Deeyea |
+| 3D Camera | dabai DC1 |
 | Microphone | Line array 4 microphones，5m 180° pickup |
 | IO | 24V 6 Input, 6 Output |
 | Communication | CAN Bus/WIFI/Network port/Bluetooth/USB serial port |
