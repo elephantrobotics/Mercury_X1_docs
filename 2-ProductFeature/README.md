@@ -202,6 +202,8 @@ The definitions of each tool I/O port are shown in the table below. Note that th
 | 7 | IN2 | Tool Input Interface 2 | Blue |
 | 8 | 485B | Reserved, Not Developed | Purple |
 
+> **Note:** This port does not currently support hot-swapping, which may damage the device components. Power off the device before hot-swapping.
+
 #### USB Terminal: Used to connect to the camera
 
 If you have read all the content of this chapter, you can continue to the next chapter.
