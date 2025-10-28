@@ -47,9 +47,7 @@
 | C++ | Supported |
 | C# | Supported |
 | JavaScript | Supported |
-| myblockly | Supported |
-| Arduino | Supported |
-| mystudio | Supported |
+| mystudio pro | Supported |
 | Serial Control Protocol | Supported |
 | TCP/IP | Supported |
 | MODBUS | Supported |
