@@ -29,7 +29,7 @@ https://github.com/elephantrobotics/mercury_demo 下载
 <img src="../resources/7-ExamplesRobotsUsing/image/case4.jpg" width="500" height="auto" />
 <br></center>
 
-- [脚本及手套控制灵巧手案例](7.3-dexteroushand_control.md)<br>
+- [脚本及手套控制灵巧手案例](7.5-dexteroushand_control.md)<br>
   此案例将通过脚本和动捕手套来控制灵巧手进行手指关节的控制，第一个脚本实现基本的张开和握拳，第二个脚本通过手套实现各个手指关节的动捕控制。
   <center>
 <br></center>
