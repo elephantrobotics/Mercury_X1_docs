@@ -29,6 +29,11 @@ https://github.com/elephantrobotics/mercury_demo 下载
 <img src="../resources/7-ExamplesRobotsUsing/image/case4.jpg" width="500" height="auto" />
 <br></center>
 
+- [Dexterous hands Case](7.5-dexteroushand_control.md)<br>
+  This case will control the dexterous hand to control the finger joints through a script and a motion capture glove. The first script realizes the basic opening and clenching of the fist, and the second script realizes the motion capture control of each finger joint through the glove.
+  <center>
+<br></center>
+
 ## Preparations for Using Vision Recognition
 
 **1. Materials and Power-On Preparation**
