@@ -32,6 +32,7 @@
     * [2 ROS2 Basics](6-SDKDevelopment/6.3-ROS2/6.3.2-ROS2_Basics.md)
     * [3 Using Rviz2](6-SDKDevelopment/6.3-ROS2/6.3.3-Rviz2Introduction.md)
     * [4 Basic Function Examples](6-SDKDevelopment/6.3-ROS2/6.3.4-BasicFunction.md)
+  * [5.4 Development based on communication protocol packets](6-SDKDevelopment/6.4-Communication.md)
 * [6 Robot Usage Scenarios](7-ExamplesRobotsUsing/README.md)
   * [6.1 QR Code Recognition and Grasping](7-ExamplesRobotsUsing/7.1-stag_detect.md)<br>
   * [6.2 Spatial Movement Case](7-ExamplesRobotsUsing/7.2-robot_move.md)<br>

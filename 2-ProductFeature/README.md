@@ -26,7 +26,7 @@
 | 3D Camera | dabai DC1 |
 | Microphone | Line array 4 microphones，5m 180° pickup |
 | IO | 24V 6 Input, 6 Output |
-| Communication | CAN Bus/WIFI/Network port/Bluetooth/USB serial port |
+| Communication | WIFI/Network port/Bluetooth/USB serial port |
 
 
 ## 2 Basic Software Function Support
