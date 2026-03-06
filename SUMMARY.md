@@ -42,7 +42,10 @@
   
 ## Support and Services
 
-  * [7 About Us](8-AboutUs/README.md)
+  * [7 About Us](8-AboutUs/8-AboutUs.md)
+      * [7.1 Elephant Robotics](8-AboutUs/8.1-company.md)
+      * [7.2 How to Read](8-AboutUs/8.3-how_to_read.md)
+      * [7.3 Contact us](8-AboutUs/8.2-contact.md)
 
 ## Acknowledgments
 
