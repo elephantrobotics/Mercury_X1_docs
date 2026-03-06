@@ -42,7 +42,10 @@
 
 ## 支持与服务
 
-  * [7 关于我们](8-AboutUs/README.md)
+  * [7 关于我们](8-AboutUs/8-AboutUs.md)
+      * [7.1 大象机器人](8-AboutUs/8.1-company.md)
+      * [7.2 如何阅读](8-AboutUs/8.3-how_to_read.md)
+      * [7.3 联系我们](8-AboutUs/8.2-contact.md)
 
 ## 致谢
 
