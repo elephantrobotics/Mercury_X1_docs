@@ -16,7 +16,7 @@
 |底盘驱动电机 |高性能直驱电机 |
 |最大运行速度 |1.2m/s |
 |最大爬坡角度 |15° |
-|主控 |Nvidia Jetson Orin Nano 8GB |
+|主控 |Jetson Orin Nano SUPER 8GB |
 |主控算力 |67 TOPS |
 |屏幕 |9英寸触摸屏 |
 |移动地盘传感器 |激光雷达，超声波雷达，2D视觉 |
