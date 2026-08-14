@@ -11,7 +11,7 @@
 | Degree of Freedom | 19DOF |
 | Battery life | 8 hours |
 | Maximum Payload | 1KG |
-| Net weight | 55KG |
+| Net weight | 62.5KG |
 | Repeatability | ± 0.05mm |
 | Drive Motor | High performance direct drive motors |
 | Maximum Operating Speed | 1.2m/s |
